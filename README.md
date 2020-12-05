@@ -1,20 +1,13 @@
 # FloatMenuSample
 
-[ ![Download](https://api.bintray.com/packages/fanofdemo/maven/FloatMenu/images/download.svg) ]
+[ ![Download](https://api.bintray.com/packages/yinfuyuan/maven/FloatMenu/images/download.svg) ]
 
-[crosg/FloatMenuSample](https://github.com/crosg/FloatMenuSample)
-transfer from [yiming/FloatMenuSample](https://github.com/fanOfDemo/FloatMenuSample)
-
-
- 
 ## GIF
 <img src="picture/floatmenu2.gif" width="320" />
-	
 
 ##  GRADLE:
 
-	compile 'com.yw.game.floatmenu:FloatMenu:2.0.1'
-
+	implementation 'com.github.floatmenu:FloatMenu:2.2.0-1'
 
 android float menu in app 
 
@@ -22,16 +15,12 @@ android float menu in app
 
  无权限需求，支持 api 11 ++
 
-
 for use：
-
-	
 
 使用示例
 see sample 
 
-[MainActivity](https://github.com/fanOfDemo/FloatMenuSample/blob/master/FloatMenuDemo/src/main/java/com/yw/game/floatmenu/demo/MainActivity.java)
-
+[MainActivity](https://github.com/yinfuyuan/FloatMenuSample/blob/master/FloatMenuDemo/src/main/java/com/yw/game/floatmenu/demo/MainActivity.java)
 
 1：
 
@@ -41,6 +30,8 @@ see sample
                     .logo(BitmapFactory.decodeResource(getResources(),R.drawable.yw_game_logo))
                     .drawCicleMenuBg(true)
                     .backMenuColor(0xffe4e3e1)
+                    .setHalfMenu(true) // 菜单贴边是否显示一半
+                    .setAnimator(true) // 是否显示拖动动画
                     .setBgDrawable(this.getResources().getDrawable(R.drawable.yw_game_float_menu_bg))
                     //这个背景色需要和logo的背景色一致
                     .setFloatItems(itemList)
@@ -57,7 +48,6 @@ see sample
 
                         }
                     });
-
 
 2：
 
@@ -84,17 +74,14 @@ see sample
 
 3： 以下方法供自定义:
 
-  可将 [BaseFloatDailog](https://github.com/crosg/FloatMenuSample/blob/master/FloatMenu/src/main/java/com/yw/game/floatmenu/customfloat/BaseFloatDailog.java) 文件拷贝出来直接使用
-
-
-
+  可将 [BaseFloatDailog](https://github.com/yinfuyuan/FloatMenuSample/blob/master/FloatMenu/src/main/java/com/yw/game/floatmenu/customfloat/BaseFloatDialog.java) 文件拷贝出来直接使用
 
         通过实现接口的形式自定义 
         BaseFloatDailog  mBaseFloatDailog = new BaseFloatDailog.FloatDialogImp(this, new BaseFloatDailog.GetViewCallback() {});
 
         或通过继承的形式自定义：
         
-         public class MyFloatDialog extends BaseFloatDailog {
+        public class MyFloatDialog extends BaseFloatDailog {
             ....         
         }
 
@@ -120,9 +107,6 @@ UPDATE LOG:
         出现在桌面的话需要：
         使用全局上下文  .withContext(mService.getApplication())
         并配合权限 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-
-
 
 ## License
 

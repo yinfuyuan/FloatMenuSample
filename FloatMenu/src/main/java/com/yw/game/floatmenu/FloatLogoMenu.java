@@ -207,6 +207,15 @@ public class FloatLogoMenu {
      */
     private boolean mCircleMenuBg;
 
+    /**
+     * 是否定时隐藏一半LOGO
+     */
+    private boolean mHalfMenu;
+
+    /**
+     * 是否显示动画
+     */
+    private boolean mAnimator;
 
     /**
      * R.drawable.yw_game_logo
@@ -258,6 +267,8 @@ public class FloatLogoMenu {
         mBackMenuColor = builder.mBackMenuColor;
         mDrawRedPointNum = builder.mDrawRedPointNum;
         mCircleMenuBg = builder.mCircleMenuBg;
+        mHalfMenu = builder.mHalfMenu;
+        mAnimator = builder.mAnimator;
         mLogoRes = builder.mLogoRes;
         mActivity = builder.mActivity;
         mOnMenuClickListener = builder.mOnMenuClickListener;
@@ -352,6 +363,7 @@ public class FloatLogoMenu {
         mFloatLogo.setDrawNum(mDrawRedPointNum);
         mFloatLogo.setBgColor(mBackMenuColor);
         mFloatLogo.setDrawDarkBg(true);
+        mFloatLogo.setAnimator(mAnimator);
         calculateDotNum();
         floatBtnEvent();
         try {
@@ -470,7 +482,7 @@ public class FloatLogoMenu {
                     mHideTimer.cancel();
                     return;
                 }
-                if (!isDrag) {
+                if (!isDrag && mHalfMenu) {
                     if (mHintLocation == LEFT) {
                         mFloatLogo.setStatus(DotImageView.HIDE_LEFT);
                         mFloatLogo.setDrawDarkBg(true);
@@ -908,6 +920,8 @@ public class FloatLogoMenu {
         private int mBackMenuColor;
         private boolean mDrawRedPointNum;
         private boolean mCircleMenuBg;
+        private boolean mHalfMenu;
+        private boolean mAnimator;
         private Bitmap mLogoRes;
         private int mDefaultLocation;
         private List<FloatItem> mFloatItems = new ArrayList<>();
@@ -946,6 +960,16 @@ public class FloatLogoMenu {
 
         public Builder drawCicleMenuBg(boolean val) {
             mCircleMenuBg = val;
+            return this;
+        }
+
+        public Builder setHalfMenu(boolean val) {
+            mHalfMenu = val;
+            return this;
+        }
+
+        public Builder setAnimator(boolean val) {
+            mAnimator = val;
             return this;
         }
 

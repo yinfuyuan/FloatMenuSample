@@ -77,6 +77,8 @@ public class MainActivity extends Activity {
                     .logo(BitmapFactory.decodeResource(getResources(), R.drawable.yw_game_logo))
                     .drawCicleMenuBg(true)
                     .backMenuColor(0xffe4e3e1)
+                    .setHalfMenu(true) // 菜单贴边是否显示一半
+                    .setAnimator(true) // 是否显示拖动动画
                     .setBgDrawable(this.getResources().getDrawable(R.drawable.yw_game_float_menu_bg))
                     //这个背景色需要和logo的背景色一致
                     .setFloatItems(itemList)
@@ -104,6 +106,7 @@ public class MainActivity extends Activity {
             //同时只能new一个
         }
 
+        mFloatMenu.show();
 
         if (mBaseFloatDialog != null) return;
 

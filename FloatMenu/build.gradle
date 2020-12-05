@@ -4,7 +4,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "2.2.0"
+version = "2.2.0-1"
 
 android {
     compileSdkVersion 28
@@ -44,9 +44,9 @@ dependencies {
 }
 
 
-def siteUrl = 'https://github.com/fanOfDemo/FloatMenuSample'            // 项目的主页
-def gitUrl = 'https://github.com/fanOfDemo/FloatMenuSample.git'   // Git仓库的url
-group = "com.yw.game.floatmenu" // Maven Group ID for the artifact，一般填你唯一的包名
+def siteUrl = 'https://github.com/yinfuyuan/FloatMenuSample'            // 项目的主页
+def gitUrl = 'https://github.com/yinfuyuan/FloatMenuSample.git'   // Git仓库的url
+group = "com.github.floatmenu" // Maven Group ID for the artifact，一般填你唯一的包名
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -65,9 +65,9 @@ install {
                 }
                 developers {
                     developer {
-                        id 'yw'       //填写开发者基本信息
-                        name 'fanofdemo'
-                        email '18720625976@163.com'
+                        id 'yinfuyuan'       //填写开发者基本信息
+                        name 'yinfuyuan'
+                        email 'yinfuyuan@gmail.com'
                     }
                 }
                 scm {
@@ -119,7 +119,7 @@ bintray {
         name = "FloatMenu"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
-        licenses = ["The BSD 3-Clause License"]
+        licenses = ["BSD 3-Clause"]
         publish = true
     }
 }

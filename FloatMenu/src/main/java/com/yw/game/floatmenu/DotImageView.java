@@ -59,6 +59,7 @@ public class DotImageView extends View {
     private final int mRedPointOffset = dip2px(10);//红点对logo的偏移量，比如左红点就是logo中心的 x - mRedPointOffset
 
     private boolean isDrag = false;//是否 绘制旋转放大动画，只有 非停靠边缘才绘制
+    private boolean mAnimator = true; // 由于isDrag调用地方太多，且没有对外暴漏，新加参数额外控制是否显示动画
     private float scaleOffset;//放大偏移值
     private ValueAnimator mDragValueAnimator;//放大、旋转 属性动画
     private LinearInterpolator mLinearInterpolator = new LinearInterpolator();//通用用加速器
@@ -108,6 +109,10 @@ public class DotImageView extends View {
 
     public void setBitmap(Bitmap bitmap) {
         mBitmap = bitmap;
+    }
+
+    public void setAnimator(boolean animator) {
+        this.mAnimator = animator;
     }
 
     public DotImageView(Context context, Bitmap bitmap) {
@@ -170,7 +175,7 @@ public class DotImageView extends View {
                 mCamera.restore();
             }
 
-            if (isDrag) {
+            if (isDrag && mAnimator) {
                 //如果当前是拖动状态则放大并旋转
                 canvas.scale((scaleOffset + 1f), (scaleOffset + 1f), getWidth() / 2, getHeight() / 2);
                 if (mIsResetPosition) {
@@ -199,7 +204,7 @@ public class DotImageView extends View {
             canvas.rotate(45, getWidth() / 2, getHeight() / 2);
         }
         canvas.save();
-        if (!isDrag) {
+        if (!isDrag || !mAnimator) {
             if (mDrawDarkBg) {
                 mPaintBg.setColor(mBgColor);
                 canvas.drawCircle(centerX, centerY, mLogoBackgroundRadius, mPaintBg);
@@ -325,7 +330,7 @@ public class DotImageView extends View {
         if (offset > 0 && offset != this.scaleOffset) {
             this.scaleOffset = offset;
         }
-        if (isDrag && mStatus == NORMAL) {
+        if (isDrag && mAnimator && mStatus == NORMAL) {
             if (mDragValueAnimator != null) {
                 if (mDragValueAnimator.isRunning()) return;
             }
